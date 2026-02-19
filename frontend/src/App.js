@@ -3,6 +3,7 @@ import Register from "./Register";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
+import AdminPanel from "./AdminPanel";
 
 function App() {
   return (
@@ -18,7 +19,17 @@ function App() {
           </ProtectedRoute>
         }
       />
+      <Route
+  path="/admin"
+  element={
+    <ProtectedRoute>
+      <AdminPanel />
+    </ProtectedRoute>
+  }
+/>
+
     </Routes>
+    
   );
 }
 

@@ -1,14 +1,15 @@
-import { motion } from "framer-motion";
+import LiveBookings from "./components/LiveBookings";
+import DriverTracking from "./components/DriverTracking";
 
 export default function AdminPanel() {
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: 1, x: 0 }}
-      className="p-8 flex-1 dark:bg-gray-900 dark:text-white"
-    >
-      <h1 className="text-4xl font-bold mb-4">Admin Panel</h1>
-      <p>Manage users, stats, and system settings.</p>
-    </motion.div>
+    <div className="p-6 bg-gray-100 min-h-screen">
+      <h1 className="text-3xl font-bold mb-6">
+        Transport Admin Panel
+      </h1>
+
+      <LiveBookings />
+      <DriverTracking />
+    </div>
   );
 }
