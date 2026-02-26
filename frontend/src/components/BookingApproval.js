@@ -3,7 +3,9 @@ import axios from "axios";
 export default function BookingApproval({ id }) {
 
   const approve = async () => {
-    await axios.post(`http://127.0.0.1:3001/bookings/approve/${id}`);
+    await axios.post(
+      `http://127.0.0.1:3001/bookings/approve/${id}`
+    );
     alert("Booking Approved");
   };
 
