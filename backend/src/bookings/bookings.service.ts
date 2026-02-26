@@ -1,19 +1,32 @@
 import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { Booking } from "./booking.entity";
 
 @Injectable()
 export class BookingsService {
-  private bookings = [
-    { id: 1, customerName: "Jay", vehicle: "Sedan", status: "pending", driver: "Ravi" },
-    { id: 2, customerName: "Rahul", vehicle: "SUV", status: "approved", driver: "Amit" },
-  ];
+  constructor(
+    @InjectRepository(Booking)
+    private bookingRepo: Repository<Booking>,
+  ) {}
 
-  findAll() {
-    return this.bookings;
+  create(data: any) {
+    return this.bookingRepo.save(data);
   }
 
-  approve(id: number) {
-    const booking = this.bookings.find(b => b.id === id);
-    if (booking) booking.status = "approved";
-    return booking;
+  findAll() {
+    return this.bookingRepo.find({
+      order: { id: "DESC" },
+    });
+  }
+
+  async approve(id: number) {
+    await this.bookingRepo.update(id, {
+      status: "Approved",
+    });
+
+    return this.bookingRepo.findOne({
+      where: { id },
+    });
   }
 }

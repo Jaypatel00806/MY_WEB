@@ -6,14 +6,29 @@ export class Booking {
   id: number;
 
   @Column()
-  customerName: string;
+  pickup: string;
+
+  @Column()
+  drop: string;
+
+  @Column()
+  date: string;
+
+  @Column()
+  passengers: string;
 
   @Column()
   vehicle: string;
 
   @Column()
-  status: string; // pending / approved / completed
+  customerName: string;
 
   @Column()
-  driver: string;
+  phone: string;
+
+  @Column()
+  email: string;
+
+  @Column()
+  status: string;
 }

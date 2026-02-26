@@ -1,17 +1,35 @@
+import axios from "axios";
+
 export default function ReviewStep({ data, next }) {
+
+  const confirmBooking = async () => {
+    try {
+      await axios.post("http://127.0.0.1:3001/bookings", {
+        pickup: data.pickup,
+        drop: data.drop,
+        date: data.date,
+        passengers: data.passengers,
+        vehicle: data.vehicle?.name,
+        customerName: data.name,
+        phone: data.phone,
+        email: data.email,
+        status: "Pending",
+      });
+
+      next({});
+    } catch (err) {
+      console.log(err);
+      alert("Booking failed");
+    }
+  };
+
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Review Booking</h2>
 
-      <p>Pickup: {data.pickup}</p>
-      <p>Drop: {data.drop}</p>
-      <p>Vehicle: {data.vehicle?.name}</p>
-      <p>Price: ₹{data.vehicle?.price}</p>
-      <p>Name: {data.name}</p>
-
       <button
-        className="bg-green-600 text-white px-4 py-2 mt-4 rounded"
-        onClick={() => next({})}
+        onClick={confirmBooking}
+        className="bg-green-600 text-white px-4 py-2 rounded"
       >
         Confirm Booking
       </button>

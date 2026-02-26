@@ -3,7 +3,7 @@ import SearchStep from "./steps/SearchStep";
 import SelectRideStep from "./steps/SelectRideStep";
 import PassengerStep from "./steps/PassengerStep";
 import ReviewStep from "./steps/ReviewStep";
-import PaymentStep from "./steps/PaymentStep";
+// import PaymentStep from "./steps/PaymentStep";
 import ConfirmationStep from "./steps/ConfirmationStep";
 
 export default function BookingFlow() {
@@ -15,17 +15,16 @@ export default function BookingFlow() {
     setStep(step + 1);
   };
 
-  const steps = [
-    <SearchStep next={next} />,
-    <SelectRideStep next={next} />,
-    <PassengerStep next={next} />,
-    <ReviewStep next={next} data={data} />,
-    <PaymentStep next={next} />,
-    <ConfirmationStep data={data} />,
-  ];
+const steps = [
+  <SearchStep next={next} />,
+  <SelectRideStep next={next} />,
+  <PassengerStep next={next} />,
+  <ReviewStep next={next} data={data} />,
+  <ConfirmationStep data={data} />,
+];
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+    <div className="bg-white p-6 rounded-xl shadow">
       <div className="mb-4 font-semibold text-indigo-600">
         Step {step} / 6
       </div>

@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { User } from './users/user.entity';
+import { Booking } from './bookings/booking.entity';
 import { BookingsModule } from './bookings/bookings.module';
 
 @Module({
@@ -13,7 +14,8 @@ import { BookingsModule } from './bookings/bookings.module';
       username: 'postgres',
       password: '1234',
       database: 'Jaydb',
-      entities: [User],
+      entities: [User, Booking],
+      autoLoadEntities: true,
       synchronize: true,
     }),
 
